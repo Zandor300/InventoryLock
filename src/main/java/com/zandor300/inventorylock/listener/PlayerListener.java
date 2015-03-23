@@ -17,6 +17,7 @@ package com.zandor300.inventorylock.listener;
 
 import com.zandor300.inventorylock.InventoryLock;
 import net.minecraft.server.v1_8_R1.EnchantmentSlotType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -29,6 +30,8 @@ public class PlayerListener implements Listener {
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
+		if(((Player)event.getWhoClicked()).hasPermission("inventorylock.bypass"))
+			return;
 		if(InventoryLock.getLockedSlots().contains(event.getSlot()))
 			event.setCancelled(true);
 		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_HEAD) && InventoryLock.getLockedSlots().contains(36))
