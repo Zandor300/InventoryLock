@@ -15,6 +15,7 @@
  */
 package com.zandor300.inventorylock.listener;
 
+import com.zandor300.inventorylock.InventoryLock;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -27,6 +28,7 @@ public class PlayerListener implements Listener {
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
-
+		if(InventoryLock.getLockedSlots().contains(event.getSlot()))
+			event.setCancelled(true);
 	}
 }
