@@ -16,6 +16,7 @@
 package com.zandor300.inventorylock.listener;
 
 import com.zandor300.inventorylock.InventoryLock;
+import net.minecraft.server.v1_8_R1.EnchantmentSlotType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -29,6 +30,14 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		if(InventoryLock.getLockedSlots().contains(event.getSlot()))
+			event.setCancelled(true);
+		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_HEAD) && InventoryLock.getLockedSlots().contains(36))
+			event.setCancelled(true);
+		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_TORSO) && InventoryLock.getLockedSlots().contains(37))
+			event.setCancelled(true);
+		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_LEGS) && InventoryLock.getLockedSlots().contains(38))
+			event.setCancelled(true);
+		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_FEET) && InventoryLock.getLockedSlots().contains(39))
 			event.setCancelled(true);
 	}
 }
