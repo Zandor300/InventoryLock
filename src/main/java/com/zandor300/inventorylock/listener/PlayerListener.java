@@ -21,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 
 /**
  * @author Zandor Smith
@@ -34,13 +35,13 @@ public class PlayerListener implements Listener {
 			return;
 		if(InventoryLock.getLockedSlots().contains(event.getSlot()))
 			event.setCancelled(true);
-		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_HEAD) && InventoryLock.getLockedSlots().contains(36))
+		else if(event.getSlotType().equals(InventoryType.SlotType.ARMOR) && InventoryLock.getLockedSlots().contains(36))
 			event.setCancelled(true);
-		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_TORSO) && InventoryLock.getLockedSlots().contains(37))
+		else if(event.getSlotType().equals(InventoryType.SlotType.ARMOR) && InventoryLock.getLockedSlots().contains(37))
 			event.setCancelled(true);
-		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_LEGS) && InventoryLock.getLockedSlots().contains(38))
+		else if(event.getSlotType().equals(InventoryType.SlotType.ARMOR) && InventoryLock.getLockedSlots().contains(38))
 			event.setCancelled(true);
-		if(event.getSlotType().equals(EnchantmentSlotType.ARMOR_FEET) && InventoryLock.getLockedSlots().contains(39))
+		else if(event.getSlotType().equals(InventoryType.SlotType.ARMOR) && InventoryLock.getLockedSlots().contains(39))
 			event.setCancelled(true);
 	}
 }
