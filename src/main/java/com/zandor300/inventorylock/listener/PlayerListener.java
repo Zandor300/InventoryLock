@@ -22,6 +22,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerDropItemEvent;
 
 /**
  * @author Zandor Smith
@@ -42,6 +43,19 @@ public class PlayerListener implements Listener {
 		else if(event.getSlotType().equals(InventoryType.SlotType.ARMOR) && InventoryLock.getLockedSlots().contains(38))
 			event.setCancelled(true);
 		else if(event.getSlotType().equals(InventoryType.SlotType.ARMOR) && InventoryLock.getLockedSlots().contains(39))
+			event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onPlayerDropItem(PlayerDropItemEvent event) {
+		int slot = 0;
+		for(int i = 0; i < 39; i++)
+			if(event.getItemDrop().getItemStack().equals(event.getPlayer().getInventory().getItem(i))) {
+				slot = i;
+				break;
+			}
+
+		if(InventoryLock.getLockedSlots().contains(slot))
 			event.setCancelled(true);
 	}
 }
