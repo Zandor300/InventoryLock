@@ -17,6 +17,7 @@ package com.zandor300.inventorylock;
 
 import com.zandor300.inventorylock.commands.InventoryLockCommand;
 import com.zandor300.inventorylock.listener.PlayerListener;
+import com.zandor300.zsutilities.ZSUtilities;
 import com.zandor300.zsutilities.commandsystem.CommandManager;
 import com.zandor300.zsutilities.utilities.Chat;
 import org.bukkit.Bukkit;
@@ -59,6 +60,8 @@ public class InventoryLock extends JavaPlugin {
 		this.getConfig().options().copyDefaults(true);
 		plugin = this;
 		PluginManager pm = Bukkit.getPluginManager();
+
+		ZSUtilities.addDependency(this);
 
 		chat.sendConsoleMessage("Sending metrics...");
 		try {
